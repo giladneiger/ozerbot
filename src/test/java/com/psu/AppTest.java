@@ -1,5 +1,6 @@
 package com.psu;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -16,5 +17,12 @@ public class AppTest
     public void shouldAnswerWithTrue()
     {
         assertTrue( true );
+    }
+
+    @Test
+    public void getName_onCall_returnTheCorrectName() {
+        String name = App.getName();
+        String expectedName = "Gilad";
+        assertEquals(expectedName, name);
     }
 }

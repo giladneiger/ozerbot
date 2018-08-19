@@ -5,7 +5,7 @@ import java.util.HashMap;
 /**
  * Created by Omri on 8/18/2018
  */
-public class OzerBot {
+public class OzerBot {  // todo add init method that gets all the features
 
     private HashMap<String, FeatureHandler> features = new HashMap<>();
 

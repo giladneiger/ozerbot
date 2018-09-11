@@ -6,6 +6,9 @@ import java.util.Random;
  * Created by Omri on 8/3/2018
  */
 public class FeatureNeiger implements FeatureHandler {
+
+    private static final int MAX_TIMES_TO_SAY_NEIGER = 9;
+
     @Override
     public String handle() {
         int timesToSayNeiger = getTimesToSayNeiger();
@@ -14,7 +17,7 @@ public class FeatureNeiger implements FeatureHandler {
 
     private int getTimesToSayNeiger() {
         Random random = new Random();
-        return random.nextInt(9);
+        return random.nextInt(MAX_TIMES_TO_SAY_NEIGER);
     }
 
     private String getNeigerString(int timesToSayNeiger) {

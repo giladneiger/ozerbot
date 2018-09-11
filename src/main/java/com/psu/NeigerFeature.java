@@ -5,7 +5,7 @@ import java.util.Random;
 /**
  * Created by Omri on 8/3/2018
  */
-public class FeatureNeiger implements FeatureHandler {
+public class NeigerFeature implements FeatureHandler {
 
     private static final int MAX_TIMES_TO_SAY_NEIGER = 9;
 

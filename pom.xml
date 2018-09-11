@@ -9,8 +9,6 @@
   <version>1.0-SNAPSHOT</version>
 
   <name>ozerbot</name>
-  <!-- FIXME change it to the project's website -->
-  <url>http://www.example.com</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -25,6 +23,12 @@
       <version>4.11</version>
       <scope>test</scope>
     </dependency>
+      <dependency>
+          <groupId>org.hamcrest</groupId>
+          <artifactId>hamcrest-all</artifactId>
+          <version>1.3</version>
+          <scope>test</scope>
+      </dependency>
   </dependencies>
 
   <build>

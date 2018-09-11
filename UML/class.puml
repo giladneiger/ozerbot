@@ -1,0 +1,23 @@
+@startuml
+
+class OzerBot {
+    sayToOzer()
+}
+
+class DrunkFeature {
+    handle(): String
+}
+
+class NeigerFeature {
+    handle(): String
+}
+
+interface FeatureHandler {
+    handle(): String
+}
+
+OzerBot -> FeatureHandler
+DrunkFeature --> FeatureHandler
+NeigerFeature --> FeatureHandler
+
+@enduml

@@ -1,15 +1,16 @@
 package com.psu;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Omri on 8/18/2018
  */
 public class OzerBot {  // todo add init method that gets all the features
 
-    private HashMap<String, FeatureHandler> features = new HashMap<>();
+    private Map<String, FeatureHandler> features;
 
-    public OzerBot(HashMap<String, FeatureHandler> features) {
+    public OzerBot(Map<String, FeatureHandler> features) {
         this.features = features;
 //        features.put("drunk", new DrunkFeature());  // example
     }

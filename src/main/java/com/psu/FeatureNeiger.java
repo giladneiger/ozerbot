@@ -8,8 +8,16 @@ import java.util.Random;
 public class FeatureNeiger implements FeatureHandler {
     @Override
     public String handle() {
+        int timesToSayNeiger = getTimesToSayNeiger();
+        return getNeigerString(timesToSayNeiger);
+    }
+
+    private int getTimesToSayNeiger() {
         Random random = new Random();
-        int timesToSayNeiger = random.nextInt(9);
+        return random.nextInt(9);
+    }
+
+    private String getNeigerString(int timesToSayNeiger) {
         StringBuilder stringBuilder = new StringBuilder("Neiger");
         for (int i = 0; i < timesToSayNeiger; i++) {
             stringBuilder.append(" Neiger");

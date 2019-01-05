@@ -33,9 +33,8 @@ public class Server extends AbstractVerticle {
     public void start() {
         Router router = Router.router(vertx);
         router.get("/:command").handler(this::botHandler);
-        vertx.createHttpServer().requestHandler(req -> req.response()
-                .putHeader("content-type", "text/plain")
-                .end("Hello from Vert.x!")).listen(8080);
+        vertx.createHttpServer().requestHandler(router::accept)
+                .listen(8080);
     }
 
     private void initBot() {

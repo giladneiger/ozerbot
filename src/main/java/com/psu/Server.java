@@ -3,6 +3,8 @@ package com.psu;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Context;
 import io.vertx.core.Vertx;
+import io.vertx.core.http.HttpHeaders;
+import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
 
@@ -15,6 +17,7 @@ import java.util.Map;
 
 public class Server extends AbstractVerticle {
 
+    public static final String COMMAND = "command";
     private OzerBot ozerBot;
     private Map<String, FeatureHandler> featureHandlerMap;
 
@@ -43,8 +46,7 @@ public class Server extends AbstractVerticle {
         ozerBot = new OzerBot(featureHandlerMap);
     }
 
-    private Map<String,FeatureHandler> initializeFeatures()
-    {
+    private Map<String, FeatureHandler> initializeFeatures() {
         HashMap<String, FeatureHandler> featureHandlerMap = new HashMap<>();
         featureHandlerMap.put("drunk", new DrunkFeature());
         featureHandlerMap.put("neiger", new NeigerFeature());
@@ -52,6 +54,14 @@ public class Server extends AbstractVerticle {
     }
 
     private void botHandler(RoutingContext routingContext) {
-
+        String message = "";
+        String theCommand = routingContext.pathParam(COMMAND);
+        if (theCommand != null) {
+            message = ozerBot.sayToOzer(theCommand);
+        }
+        JsonObject json = new JsonObject().put("message", message);
+        routingContext.response()
+                .putHeader(HttpHeaders.CONTENT_TYPE, "application/json")
+                .end(json.encode());
     }
 }

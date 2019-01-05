@@ -20,17 +20,9 @@ public class Server extends AbstractVerticle {
     private static final String COMMAND = "command";
     private OzerBot ozerBot;
 
-    public static void main(String[] args) {
-        Vertx vertx = Vertx.vertx();
-        Context context = Vertx.currentContext();
-        Server server = new Server();
-        server.initBot();
-        server.init(vertx, context);
-        server.start();
-    }
-
     @Override
     public void start() {
+        initBot();
         Router router = Router.router(vertx);
         router.get("/:command").handler(this::botHandler);
         vertx.createHttpServer().requestHandler(router::accept)

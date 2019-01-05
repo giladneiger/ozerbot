@@ -17,9 +17,8 @@ import java.util.Map;
 
 public class Server extends AbstractVerticle {
 
-    public static final String COMMAND = "command";
+    private static final String COMMAND = "command";
     private OzerBot ozerBot;
-    private Map<String, FeatureHandler> featureHandlerMap;
 
     public static void main(String[] args) {
         Vertx vertx = Vertx.vertx();
@@ -34,16 +33,14 @@ public class Server extends AbstractVerticle {
     public void start() {
         Router router = Router.router(vertx);
         router.get("/:command").handler(this::botHandler);
-        vertx.createHttpServer().requestHandler(req -> {
-            req.response()
-                    .putHeader("content-type", "text/plain")
-                    .end("Hello from Vert.x!");
-        }).listen(8080);
+        vertx.createHttpServer().requestHandler(req -> req.response()
+                .putHeader("content-type", "text/plain")
+                .end("Hello from Vert.x!")).listen(8080);
     }
 
     private void initBot() {
-        featureHandlerMap = initializeFeatures();
-        ozerBot = new OzerBot(featureHandlerMap);
+        Map<String, FeatureHandler> features = initializeFeatures();
+        ozerBot = new OzerBot(features);
     }
 
     private Map<String, FeatureHandler> initializeFeatures() {

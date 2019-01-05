@@ -21,6 +21,7 @@ public class Server extends AbstractVerticle {
 
     @Override
     public void start() {
+        Router router = Router.router(vertx);
         vertx.createHttpServer().requestHandler(req -> {
             req.response()
                     .putHeader("content-type", "text/plain")
